@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management App</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+    <!-- ========== LOGIN & SIGNUP PAGE ========== -->
+    <div id="auth-container" class="container">
+        <div class="todo-app auth-app">
+            <!-- Login Section -->
+            <div id="login-section" class="auth-section active">
+                <h2>Login</h2>
+                <div class="auth-form">
+                    <input type="text" id="login-username" placeholder="Enter username" class="auth-input">
+                    <input type="password" id="login-password" placeholder="Enter password" class="auth-input">
+                    <button onclick="handleLogin()" class="auth-btn">Login</button>
+                    <p class="auth-text">Don't have an account? <a href="#" onclick="switchToSignup(event)">Sign up
+                            here</a></p>
+                </div>
+                <div id="login-error" class="error-message"></div>
+            </div>
+
+            <!-- Signup Section -->
+            <div id="signup-section" class="auth-section">
+                <h2>Sign Up</h2>
+                <div class="auth-form">
+                    <input type="text" id="signup-username" placeholder="Choose a username" class="auth-input">
+                    <input type="password" id="signup-password" placeholder="Create a password" class="auth-input">
+                    <input type="password" id="signup-confirm-password" placeholder="Confirm password"
+                        class="auth-input">
+                    <button onclick="handleSignup()" class="auth-btn">Sign Up</button>
+                    <p class="auth-text">Already have an account? <a href="#" onclick="switchToLogin(event)">Login
+                            here</a></p>
+                </div>
+                <div id="signup-error" class="error-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TASK MANAGEMENT PAGE ========== -->
+    <div id="app-container" class="container app-container-hidden">
+        <div class="todo-app">
+            <!-- Header with User Info & Logout -->
+            <div class="app-header">
+                <h2>Task Manager</h2>
+                <div class="user-section">
+                    <span id="username-display" class="username">Welcome, User</span>
+                    <button onclick="handleLogout()" class="logout-btn">Logout</button>
+                </div>
+            </div>
+
+            <!-- Input Section for Adding Tasks -->
+            <div class="input-section">
+                <input type="text" id="input-box" placeholder="Enter task description...">
+
+                <select id="priority-select">
+                    <option value="Medium">Priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+
+                <input type="date" id="due-date-input">
+
+                <button onclick="addTask()">Add Task</button>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <h3>Filters</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterTasks('all')">All</button>
+                    <button class="filter-btn" onclick="filterTasks('pending')">Pending</button>
+                    <button class="filter-btn" onclick="filterTasks('completed')">Completed</button>
+                </div>
+
+                <div class="priority-filters">
+                    <label><input type="checkbox" id="high-filter" onchange="applyFilters()"> High Priority</label>
+                    <label><input type="checkbox" id="medium-filter" onchange="applyFilters()"> Medium Priority</label>
+                    <label><input type="checkbox" id="low-filter" onchange="applyFilters()"> Low Priority</label>
+                </div>
+            </div>
+
+            <!-- Task List -->
+            <ul id="list-container" class="task-list">
+                <!-- Tasks will be dynamically added here -->
+            </ul>
+
+            <!-- Empty State Message -->
+            <div id="empty-state" class="empty-state">
+                <p>No tasks yet. Add one to get started!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+
+</html>
